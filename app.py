@@ -3,7 +3,7 @@ from yt_dlp import YoutubeDL
 import os
 
 st.title("📥 Video Downloader")
-st.write("Download YouTube, TikTok, and Instagram videos")
+st.write("Download YouTube / TikTok / Instagram public videos")
 
 url = st.text_input("Enter Video URL")
 
@@ -15,9 +15,11 @@ if st.button("Download"):
                 'format': 'bestvideo+bestaudio/best',
                 'merge_output_format': 'mp4',
                 'http_headers': {
-                    'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64)',
+                    'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/117.0',
+                    'Accept': '*/*',
                     'Accept-Language': 'en-US,en;q=0.9',
-                }
+                    'Referer': 'https://www.youtube.com/',
+                },
             }
             os.makedirs("downloads", exist_ok=True)
             with YoutubeDL(ydl_opts) as ydl:
